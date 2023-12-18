@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AJAX</title>
+        <link href="/output.css" rel="stylesheet">
+    </head>
+    <body class="relative w-full min-h-screen bg-coffee dark:bg-darkNight-1">
+        <!-- Modal window -->
+        <div id="modal" class="w-full h-full" hidden>
+            <div id="modal__overlay" class="fixed w-full h-full bg-black opacity-40 z-10"></div>
+            <div id="modal__window" class="fixed left-1/3 top-1/4 w-1/3 max-h-fit bg-coffee z-20 rounded-3xl flex flex-col items-center py-20 dark:bg-darkPurple">
+                <div id="modal__header" class="w-full flex justify-end">
+                    <img id="modal__close-button" class="modal__close-button w-8 h-8 self-center mr-20" src="./assets/close.png" alt="delete">
+                </div>
+
+                <label for="modal__user-input" class="text-dust text-xl">user</label>
+                <select class="w-1/3 mb-10 bg-dust font-bold" name="name" id="modal__user-input">
+                    <option disabled selected hidden value="">name</option>
+                    <!-- options user names from js -->
+                </select>
+
+                <label for="modal__title-input" class="text-dust text-3xl">title</label>
+                <textarea class="w-2/3 mb-10 bg-dust h-32" type="text" name="title" id="modal__title-input"></textarea>
+
+                <label for="modal__body-input" class="text-dust text-3xl">body</label>
+                <textarea class="w-2/3 mb-20 bg-dust h-32" type="text" name="body" id="modal__body-input"></textarea>
+
+                <button id="modal__submit-button" type="button" class="modal__button w-1/4 rounded-2xl bg-dust text-black font-bold h-10">Save</button>
+            </div>
+            <div id="repeat-modal-window" class="" hidden>
+                <div class="fixed left-1/3 top-1/4 w-1/3 h-1/2 max-h-fit z-20 bg-coffee rounded-3xl flex flex-col space-y-4 items-center py-20 dark:bg-darkNight-3">
+                    <div id="repeat-modal-window__header" class="w-full flex justify-end">
+                        <img id="repeat-modal-window__close-button" class="repeat-modal-window__close-button w-8 h-8 self-center mr-20" src="./assets/whiteCloseIcon.png" alt="delete">
+                    </div>
+                    <div id="repeat-modal-window__title" class="w-full flex flex-col justify-items-center"></div>
+                    <button id="repeat-modal-window__submit-button" type="button" class="repeat-modal-window__button w-1/4 rounded-2xl bg-dust text-black font-light dark:bg-darkPurpleBright dark:text-dust">Yes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav section -->
+        <nav class="flex flex-row items-center justify-center relative mx-auto bg-coffee shadow dark:bg-darkNight-1">
+            <div class="container my-2 space-y-2 flex flex-col items-center justify-between md:flex-row">
+                <div class="px-10">
+                    <img height="80" width="80" src="./assets/newLogo.png" alt="logo">
+                </div>
+                <div class="flex space-y-2 flex-col md:flex-row md:space-x-20 md:space-y-0">
+                    <a class="font-light text-dust font-sans justify-self-center dark:hover:text-gray-300" href="#">GitHub</a>
+                    <a class="font-light text-dust font-sans dark:hover:text-gray-300" href="#">Vk</a>
+                    <a class="font-light text-dust font-sans dark:hover:text-gray-300" href="#">Telegram</a>
+                </div>
+            </div>        
+        </nav>
+
+        <!-- Main section -->
+        <section class="mx-auto flex flex-col items-center bg-latte py-2 dark:bg-darkNight-2">
+            <img src="./assets/web.png" height="600" width="600" alt="web" class="my-4">
+            <h1 class="text-6xl text-center w-1/2 mb-6 -mt-48 opacity-60 text-coffee font-bold dark:text-darkPurple">Create posts, add them to favorites, share with friends</h2>
+            <button id="create-post-button" class="h-fit w-fit rounded-2xl bg-coffee text-dust font-medium px-3 py-2 my-10 justify-self-center text-center text-3xl transition ease-in-out delay-150 hover:scale-110 dark:bg-darkPurple dark:text-dust" type="button">Create post</button>
+        </section>
+
+        <!-- Posts section -->
+        <section id="posts" class="mx-auto container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div id="loader" class="absolute justify-self-center mt-44" >
+                <!-- https://loading.io/css/ -->
+                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> 
+            </div>
+            <!-- Posts from ajax -->
+        </section>
+        
+        <!-- Dark mode button -->
+        <button id="dark-mode-switch-button" class="fixed top-2 right-8 w-11 h-11" type="button">
+            <img src="./assets/sun.png" alt="sun">
+            <img src="./assets/moon.png" alt="moon" hidden>
+        </button>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script type="module" src="./userService.js"></script>
+        <script type="module" src="./postService.js"></script>
+        <script type="module" src="./main.js"></script>
+    </body>
+</html>
